@@ -104,14 +104,14 @@ write.csv(data.frame(chr=chr.select, window.first, window.last, no.window=no.win
 MEDIPS.exportWIG(Set=MeDIP.set, file=paste0(outdir,"/medips.wig"), format="rpkm", descr="")
 
 # write saturation metrics
-png(file=paste0(outdir, "/saturation.png"), units="px", height=1000, width=1000)
- MEDIPS.plotSaturation(sr)
-dev.off()
+#png(file=paste0(outdir, "/saturation.png"), units="px", height=1000, width=1000)
+ #MEDIPS.plotSaturation(sr)
+#dev.off()
 
 # write coverage metrics
-png(file=paste0(outdir, "/coverage.png"), units="px", height=1000, width=1000)
- MEDIPS.plotSeqCoverage(seqCoverageObj=cr, type="hist", t=15, main="Sequence pattern coverage, histogram")
-dev.off()
+#png(file=paste0(outdir, "/coverage.png"), units="px", height=1000, width=1000)
+ #MEDIPS.plotSeqCoverage(seqCoverageObj=cr, type="hist", t=15, main="Sequence pattern coverage, histogram")
+#dev.off()
 
 # write calibration plot
 #png(file=paste0(outdir, "/calibration.png"), units="px", height=1000, width=1000)
