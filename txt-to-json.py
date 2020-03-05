@@ -80,7 +80,7 @@ for x in range(0,2):
     data[counts[0+x]] = counts[3+x]
 
 for x in range(0,5):
-    data[windows[1+x]] = windows[7+x]
+    data[windows[1+x]] = windows[6+x]
 
 for x in range(0,4):
     data[saturation[0+x]] = saturation[5+x]
