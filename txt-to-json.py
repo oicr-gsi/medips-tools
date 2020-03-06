@@ -100,8 +100,8 @@ summary[14] = "READ_GROUP_0"
 for x in range(11,14):
     data[summary[1 + x]] = ""
 
-for x in range(0,22):
-    data[alignment[0+x]] = alignment[25+x]
+for x in range(0,23):
+    data[alignment[0+x]] = alignment[27+x]
 alignment[22] = "SAMPLE_1"
 alignment[23] = "LIBRARY_2"
 alignment[24] = "READ_GROUP_1"
