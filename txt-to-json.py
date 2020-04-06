@@ -89,6 +89,8 @@ dedup[0] = "LIBRARY_0"
 data[dedup[0]] = (dedup[10]+"_"+dedup[11])
 for x in range(0,9):
     data[dedup[1+x]] = dedup[12+x]
+if data[dedup[9]] == "set_size":
+    data[dedup[9]] = ""
 
 
 data[summary[0]] = (summary[15]+"_"+summary[16])
