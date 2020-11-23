@@ -1,5 +1,6 @@
 library(MEDIPS)
 library(BSgenome.Hsapiens.UCSC.hg19)
+library(BSgenome.Hsapiens.UCSC.hg38)
 library(MEDIPSData)
 library(optparse)
 
