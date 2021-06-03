@@ -61,16 +61,16 @@ if(!dir.exists(outdir)){
 }
 
 # run MEDIPS and extract counts
-MeDIP.set=MEDIPS.createSet(file=bamfile, BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, window_size=ws, chr.select=chr.select, simpleCigar = )
+MeDIP.set=MEDIPS.createSet(file=bamfile, BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, window_size=ws, chr.select=chr.select, simpleCigar = simpleCigarFlag)
 
 # coupling
 CS <- MEDIPS.couplingVector(pattern="CG", refObj=MeDIP.set)
 
 # get saturation metrics
-sr <- MEDIPS.saturation(file=bamfile, BSgenome=BSgenome, uniq=uniq, extend=extend, shift=shift, window_size=ws, chr.select=chr.select)
+sr <- MEDIPS.saturation(file=bamfile, BSgenome=BSgenome, uniq=uniq, extend=extend, shift=shift, window_size=ws, chr.select=chr.select, simpleCigar = simpleCigarFlag)
 
 # Coverage
-cr <- MEDIPS.seqCoverage(file=bamfile, pattern="CG", BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, chr.select=chr.select)
+cr <- MEDIPS.seqCoverage(file=bamfile, pattern="CG", BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, chr.select=chr.select, simpleCigar = simpleCigarFlag)
 # compute the % CpG sites covered at Nx coverage
 total.CpG <- length(cr$cov.res)
 CpG.with.coverage <- length(ch1$cov.res[ch1$cov.res >= covX]) 
