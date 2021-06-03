@@ -14,7 +14,10 @@ option_list = list(
   make_option(c("-e", "--extend"), type="numeric", default=300, help="extend", metavar="numeric"),
   make_option(c("-s", "--shift"), type="numeric", default=0, help="shift", metavar="numeric"),
   make_option(c("-w", "--ws"), type="numeric", default=100, help="ws", metavar="numeric"),
-  make_option(c("-n", "--samplename"), type="character", default=NULL, help="ws", metavar="character")
+  make_option(c("-n", "--samplename"), type="character", default=NULL, help="ws", metavar="character"),
+  make_option(c("-f", "--cigarFlag"), action="store_true", default=TRUE, help="simpleCigarFlag"), # add a flag enabling or disabling simple cigar flag setting
+  make_option(c("-x", "--covX"), type="numeric", default=1, help="minimum reads supporting CpGs", metavar="numeric") # add a character for enabling or disabling simple cigar flag setting
+  
 )
 
 # get options
@@ -31,6 +34,9 @@ extend <- opt$extend
 shift <- opt$shift
 ws <- opt$ws
 samplename <- opt$samplename
+simpleCigarFlag <- opt$cigarFlag
+covX <- opt$covX
+
 
 # set the working dir
 setwd(basedir)
@@ -55,7 +61,7 @@ if(!dir.exists(outdir)){
 }
 
 # run MEDIPS and extract counts
-MeDIP.set=MEDIPS.createSet(file=bamfile, BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, window_size=ws, chr.select=chr.select)
+MeDIP.set=MEDIPS.createSet(file=bamfile, BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, window_size=ws, chr.select=chr.select, simpleCigar = )
 
 # coupling
 CS <- MEDIPS.couplingVector(pattern="CG", refObj=MeDIP.set)
@@ -65,6 +71,10 @@ sr <- MEDIPS.saturation(file=bamfile, BSgenome=BSgenome, uniq=uniq, extend=exten
 
 # Coverage
 cr <- MEDIPS.seqCoverage(file=bamfile, pattern="CG", BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, chr.select=chr.select)
+# compute the % CpG sites covered at Nx coverage
+total.CpG <- length(cr$cov.res)
+CpG.with.coverage <- length(ch1$cov.res[ch1$cov.res >= covX]) 
+frac.CpG.coverage <- CpG.with.coverage/total.CpG
 
 # CpG enrichment
 er <- MEDIPS.CpGenrich(file=bamfile, BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, chr.select=chr.select)
@@ -78,7 +88,7 @@ rownames(saturation_df) <- sample_name
 write.table(saturation_df, file=paste0(outdir, "/saturation_metrics.txt"), sep="\t", row.names=T, quote=F, col.names=NA)
 
 # write out coverage metrics
-coverage_df <- data.frame(numberReadsCG=cr$numberReads, numberReadsWOCG=cr$numberReadsWO)
+coverage_df <- data.frame(numberReadsCG=cr$numberReads, numberReadsWOCG=cr$numberReadsWO, numberCpGsitesInGenome=total.CpG, numberCpGSitesWithCov=CpG.with.coverage, fractionCpGCov=frac.CpG.coverage)
 rownames(coverage_df) <- sample_name
 write.table(coverage_df, file=paste0(outdir, "/coverage_counts.txt"), sep="\t", row.names=T, quote=F, col.names=NA)
 
