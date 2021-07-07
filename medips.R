@@ -15,8 +15,8 @@ option_list = list(
   make_option(c("-s", "--shift"), type="numeric", default=0, help="shift", metavar="numeric"),
   make_option(c("-w", "--ws"), type="numeric", default=100, help="ws", metavar="numeric"),
   make_option(c("-n", "--samplename"), type="character", default=NULL, help="ws", metavar="character"),
-  make_option(c("-f", "--cigarFlag"), action="store_true", default=TRUE, help="simpleCigarFlag"), # add a flag enabling or disabling simple cigar flag setting
-  make_option(c("-x", "--covX"), type="numeric", default=1, help="minimum reads supporting CpGs", metavar="numeric") # add a character for enabling or disabling simple cigar flag setting
+  make_option(c("-f", "--cigarFlag"), action="store_true", default=FALSE, help="simpleCigarFlag"), # add a flag enabling or disabling simple cigar flag setting
+  make_option(c("-x", "--covX"), type="numeric", default=1, help="minimum reads supporting CpGs", metavar="numeric") # min cov
   
 )
 
