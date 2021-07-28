@@ -1,7 +1,3 @@
-library(MEDIPS)
-library(BSgenome.Hsapiens.UCSC.hg19)
-library(BSgenome.Hsapiens.UCSC.hg38)
-library(MEDIPSData)
 library(optparse)
 
 # command line options
@@ -15,8 +11,8 @@ option_list = list(
   make_option(c("-s", "--shift"), type="numeric", default=0, help="shift", metavar="numeric"),
   make_option(c("-w", "--ws"), type="numeric", default=100, help="ws", metavar="numeric"),
   make_option(c("-n", "--samplename"), type="character", default=NULL, help="ws", metavar="character"),
-  make_option(c("-f", "--cigarFlag"), action="store_true", default=FALSE, help="simpleCigarFlag"), # add a flag enabling or disabling simple cigar flag setting
-  make_option(c("-x", "--covX"), type="numeric", default=1, help="minimum reads supporting CpGs", metavar="numeric") # min cov
+  make_option(c("-f", "--cigarFlag"), action="store_true", default=FALSE, help="simpleCigarFlag"), # add a flag simple cigar flag 
+  make_option(c("-x", "--covX"), type="numeric", default=1, help="minimum reads supporting CpGs", metavar="numeric") # specify minimum coverage
   
 )
 
@@ -37,6 +33,10 @@ samplename <- opt$samplename
 simpleCigarFlag <- opt$cigarFlag
 covX <- opt$covX
 
+library(MEDIPS)
+library(BSgenome.Hsapiens.UCSC.hg19)
+library(BSgenome.Hsapiens.UCSC.hg38)
+library(MEDIPSData)
 
 # set the working dir
 setwd(basedir)
