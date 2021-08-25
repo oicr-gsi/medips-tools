@@ -73,7 +73,7 @@ sr <- MEDIPS.saturation(file=bamfile, BSgenome=BSgenome, uniq=uniq, extend=exten
 cr <- MEDIPS.seqCoverage(file=bamfile, pattern="CG", BSgenome=BSgenome, extend=extend, shift=shift, uniq=uniq, chr.select=chr.select, simpleCigar = simpleCigarFlag)
 # compute the % CpG sites covered at Nx coverage
 total.CpG <- length(cr$cov.res)
-CpG.with.coverage <- length(ch1$cov.res[ch1$cov.res >= covX]) 
+CpG.with.coverage <- length(cr$cov.res[cr$cov.res >= covX]) 
 frac.CpG.coverage <- CpG.with.coverage/total.CpG
 
 # CpG enrichment
