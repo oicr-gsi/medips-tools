@@ -101,10 +101,10 @@ for x in range(0, 15):
     data[summary[x]] = summary[15+x]
 data[summary[0]] = data[summary[0]].replace(' ', '_')
 
-alignment[22] = "SAMPLE_1"
-alignment[23] = "LIBRARY_2"
-alignment[24] = "READ_GROUP_1"
-for x in range(0, 25):
+alignment[24] = "SAMPLE_1"
+alignment[25] = "LIBRARY_2"
+alignment[26] = "READ_GROUP_1"
+for x in range(0, 27):
     data[alignment[x]] = alignment[27+x]
 
 for x in range(0, 6):
