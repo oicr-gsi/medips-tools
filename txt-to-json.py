@@ -87,25 +87,28 @@ for x in range(0,5):
 for x in range(0,4):
     data[saturation[0+x]] = saturation[5+x]
 
-dedup[0] = "LIBRARY_0"
-for x in range(0, 10):
-    data[dedup[x]] = dedup[10 + x]
-if data[dedup[9]] == "set_size":
-    data[dedup[9]] = ""
-data[dedup[0]] = data[dedup[0]].replace(' ', '_')
+if isinstance(dedup, list) and len(dedup) >= 20:
+    dedup[0] = "LIBRARY_0"
+    for x in range(0, 10):
+        data[dedup[x]] = dedup[10 + x]
+    if data[dedup[9]] == "set_size":
+        data[dedup[9]] = ""
+    data[dedup[0]] = data[dedup[0]].replace(' ', '_')
 
-summary[12] = "SAMPLE_0"
-summary[13] = "LIBRARY_1"
-summary[14] = "READ_GROUP_0"
-for x in range(0, 15):
-    data[summary[x]] = summary[15+x]
-data[summary[0]] = data[summary[0]].replace(' ', '_')
+if isinstance(summary, list) and len(summary) >= 30:
+    summary[12] = "SAMPLE_0"
+    summary[13] = "LIBRARY_1"
+    summary[14] = "READ_GROUP_0"
+    for x in range(0, 15):
+        data[summary[x]] = summary[15+x]
+    data[summary[0]] = data[summary[0]].replace(' ', '_')
 
-alignment[24] = "SAMPLE_1"
-alignment[25] = "LIBRARY_2"
-alignment[26] = "READ_GROUP_1"
-for x in range(0, 27):
-    data[alignment[x]] = alignment[27+x]
+if isinstance(alignment, list) and len(alignment) >= 54:
+    alignment[24] = "SAMPLE_1"
+    alignment[25] = "LIBRARY_2"
+    alignment[26] = "READ_GROUP_1"
+    for x in range(0, 27):
+        data[alignment[x]] = alignment[27+x]
 
 for x in range(0, 6):
     data[thalia[0+x]] = thalia[6+x]
